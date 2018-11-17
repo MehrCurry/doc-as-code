@@ -1,0 +1,156 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "http://rubygems-proxy.torquebox.org/releases" }
+    }
+
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0'
+        classpath 'commons-httpclient:commons-httpclient:3.1'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.16'
+        classpath 'com.github.jruby-gradle:jruby-gradle-plugin:1.6.0'
+    }
+}
+
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.3'
+    id 'com.github.jruby-gradle.base' version '1.4.0'
+    id 'org.kordamp.gradle.livereload' version '0.2.1'
+}
+
+apply plugin: 'java'
+apply plugin: 'org.asciidoctor.convert'
+apply plugin: 'com.github.jruby-gradle.base'
+apply plugin: 'org.ysb33r.vfs'
+apply plugin: 'java'
+apply plugin: 'org.kordamp.gradle.livereload'
+
+version = '1.0.0-SNAPSHOT'
+
+defaultTasks 'asciidoctor', 'documentation'
+
+ext {
+    revealjsVersion = '3.7.0'
+    asciidoctorBackendVersion = 'master'
+    downloadDir = new File(buildDir,'download')
+    templateDir = new File(downloadDir,'templates')
+    revealjsDir   = new File(downloadDir,'reveal.js')
+}
+
+// tag::dependencies[]
+dependencies {
+    gems 'rubygems:slim:3.0.8'
+    gems 'rubygems:thread_safe:0.3.5'
+    gems 'rubygems:asciidoctor-diagram:1.5.11'
+    gems 'rubygems:asciidoctor-revealjs:1.1.3'
+    gems 'rubygems:prawn:2.1.0'
+    gems 'rubygems:concurrent-ruby:1.1.3'
+}
+// end::dependencies[]
+
+// tag::download[]
+task download {
+    doLast {
+        mkdir downloadDir
+        vfs {
+            cp "zip:https://github.com/hakimel/reveal.js/archive/${revealjsVersion}.zip!reveal.js-${revealjsVersion}",
+                    revealjsDir, recursive:true, overwrite:true
+        }
+    }
+}
+// end::download[]
+
+download {
+    description "Download extra revealjs resources"
+    outputs.dir templateDir
+    outputs.dir revealjsDir
+}
+
+asciidoctorj {
+    version = '1.6.0-alpha.6'
+}
+
+task copyResources(type: Copy) {
+    from ("src/docs/resources") {
+        include '**'
+    }
+    into("${buildDir}/asciidoc/revealjs")
+}
+
+asciidoctor {
+    dependsOn 'jrubyPrepare', 'download', 'copyResources'
+    inputs.dir sourceDir
+    outputs.dir "${project.buildDir}/asciidoc/revealjs"
+    sources {
+        include 'presentation.adoc'
+    }
+    resources {
+        from (sourceDir) {
+            include 'images/**'
+        }
+        from ("$downloadDir/reveal.js/reveal.js-${revealjsVersion}") {
+            into('reveal.js')
+            include "**"
+        }
+    }
+    gemPath = jrubyPrepare.outputDir
+    requires = ['asciidoctor-revealjs', 'asciidoctor-diagram']
+    backends 'revealjs', 'html5'
+    attributes \
+        'build-gradle': file('build.gradle'),
+            'sourcedir': project.sourceSets.main.java.srcDirs[0],
+            'endpoint-url': 'http://example.org',
+            'source-highlighter': 'highlightjs',
+            'mkdirs': true,
+            'imagesdir': './images',
+            'stylesdir': 'styles/',
+            'stylesheet': 'foobar',
+            'toc': 'left',
+            'icons': 'font',
+            'setanchors': '',
+            'idprefix': 'slide-',
+            'docinfo1': '',
+            'idseparator': '-',
+            'revealjs_transition': 'linear',
+            'revealjs_history': 'true',
+            'revealjs_slideNumber': 'true'
+}
+
+task documentation(type: org.asciidoctor.gradle.AsciidoctorTask) {
+    dependsOn 'jrubyPrepare'
+    inputs.dir sourceDir
+    outputs.dir "${project.buildDir}/asciidoc"
+    sources {
+        include 'presentation.adoc'
+    }
+    resources {
+        from (sourceDir) {
+            include 'images/**'
+        }
+    }
+    gemPath = jrubyPrepare.outputDir
+    requires = ['asciidoctor-diagram']
+    backends 'html5'
+    attributes \
+        'build-gradle': file('build.gradle'),
+            'sourcedir': project.sourceSets.main.java.srcDirs[0],
+            'endpoint-url': 'http://example.org',
+            'source-highlighter': 'coderay',
+            'imagesdir': './images',
+            'toc': 'left',
+            'icons': 'font',
+            'setanchors': '',
+            'idprefix': 'slide-',
+            'idseparator': '-',
+            'docinfo': 'shared',
+            'bibliography-database': 'cnote.bib',
+            'bibliography-style': 'apa',
+            'bibliography-locale': 'de-DE',
+            'allow-uri-read': true
+}
+
+liveReload {
+    docRoot asciidoctor.outputDir.canonicalPath
+}

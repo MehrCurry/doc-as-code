@@ -1,0 +1,161 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ */
+
+
+ // Default mixins and settings -----------------
+ @import "../template/mixins";
+ @import "../template/settings";
+ // ---------------------------------------------
+
+
+ // Include theme-specific fonts
+ @import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+// iteratec colors
+$iteratec_schwarz: #000;
+$iteratec_weiss: #fff;
+$iteratec_hellblau: #cde6f5;
+$iteratec_mittelblau: #91c3e6;
+$iteratec_tuerkisblau: #008cd2;
+$iteratec_lavendel: #e6bedc;
+$iteratec_iteragenta: #a92183;
+$iteratec_dunkelpurpur: #731964;
+$iteratec_gelbbraun: #ebd7be;
+$iteratec_sand: #e1c39b;
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: $iteratec_iteragenta;
+
+$mainFontSize: 200%;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Calibri', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 700;
+$linkColor: $iteratec_tuerkisblau;
+$linkColorHover: $iteratec_mittelblau;
+$selectionBackgroundColor: $iteratec_hellblau;
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
+}
+
+p.title-slide-box {
+  color: $iteratec_weiss;
+  width: 57.62711864%;
+  padding: 40px 35px 30px 55px;
+  background: linear-gradient(to right, rgba(61, 0, 43, 0.8) 0%, rgba(153, 0, 99, 0.92) 100%);
+  background-image: linear-gradient(to right, rgba(61, 0, 43, 0.8) 0%, rgba(153, 0, 99, 0.921569) 100%);
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+}
+p.contacts-box {
+  @extend p.title-slide-box;
+  line-height: 0.95 !important;
+}
+span.iteragenta-box-title{
+  font-size: 1.6em;
+}
+span.iteragenta-box-subtitle{
+  font-size: 1.0em;
+}
+span.iteragenta-box-normal{
+  font-size: 0.7em;
+}
+span.iteragenta-box-small{
+  font-size: 0.6em;
+}
+img.right-top{
+  position: fixed;
+  right: -50px;
+  top: -150px;
+  border: none !important;
+  width: 5em;
+  box-shadow: none !important;
+  background: initial !important;
+}
+.vertical-text {
+  transform: rotate(90deg);
+  transform-origin: left top 0;
+}
+.itera-emphasized{
+  font-weight: bold;
+}
+.iteratec-hellblau{
+  @extend .itera-emphasized;
+  color: $iteratec-hellblau;
+}
+.iteratec_mittelblau{
+  @extend .itera-emphasized;
+  color: $iteratec_mittelblau;
+}
+.iteratec_tuerkisblau{
+  @extend .itera-emphasized;
+  color: $iteratec_tuerkisblau;
+}
+.iteratec_lavendel{
+  @extend .itera-emphasized;
+  color: $iteratec_lavendel;
+}
+.iteragenta{
+  @extend .itera-emphasized;
+  color: $iteratec_iteragenta;
+}
+.iteratec_dunkelpurpur{
+  @extend .itera-emphasized;
+  color: $iteratec_dunkelpurpur;
+}
+.iteratec_gelbbraun{
+  @extend .itera-emphasized;
+  color: $iteratec_gelbbraun;
+}
+.iteratec_sand{
+  @extend .itera-emphasized;
+  color: $iteratec_sand;
+}
+.image-without-border{
+  border: none !important;
+  box-shadow: none !important;
+}
+// Fixes for background color in full screen mode
+// taken from https://github.com/hakimel/reveal.js/issues/1624
+html:-webkit-full-screen-ancestor {
+  background-color: #fff;
+}
+html:-moz-full-screen-ancestor {
+  background-color: #fff;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+section[data-state="chalkboard"] p {
+  font-family: 'Permanent Marker', cursive !important;
+  font-size: 200% !important;
+  color: white;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------

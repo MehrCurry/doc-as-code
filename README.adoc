@@ -1,0 +1,19 @@
+= README
+:icons: font
+
+== Build
+
+[source,bash]
+----
+./gradlew
+----
+
+== Icons
+
+Sämtliche Font Awesome Icons sind verwendbar (https://fontawesome.com)
+
+icon:circle[] icon:heart[2x,role="red"] icon:shield[rotate=90, flip=vertical]
+
+== Git
+
+https://iteragit.iteratec.de/cnote/Dokumente

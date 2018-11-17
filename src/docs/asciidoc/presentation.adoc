@@ -1,0 +1,197 @@
+= documentation as code / code as documentation
+:docinfo1:
+
+[%notitle]
+== Intro
+image::title-background.png[background, size=cover, role=blured]
+
++++<p class="title-slide-box">+++
+Guido Zockoll
+Java User Group, Hamburg 11/2018
++++</p>+++
+
+== Foo
+
+* bar
+* baz
+
+image::title-background.png[role=blured]
+
+== Das ungeliebte Wesen
+
+image::https://media.graphcms.com/blur=amount:2/output=c:true,q:60,f:webp/compress/6C5FRH8oRTqiWb7uY5QA[background, size=cover]
+
+*Working software* over comprehensive documentation
+
+-- Auszug aus dem agilen Manifest
+
+== Formate
+
+image::https://media.graphcms.com/resize=w:1280,f:crop/blur=amount:8/modulate=brightness:50/output=c:true,q:60,f:webp/compress/h1JyCz6VTfaLj3eYMUec[background, size=cover]
+
+Formate für Software-Dokumentation
+
+* Plain-Text
+* Markdown
+* Word
+* JavaDoc
+* ...
+
+== Ablageorte
+
+image::https://media.graphcms.com/resize=w:1280,f:crop/blur=amount:8/modulate=brightness:50/output=c:true,q:60,f:webp/compress/Ze0OPXZZS9aefCEXusSx[background, size=cover]
+
+* Fileserver
+* Wiki
+* Jira
+* Webserver
+* ...
+
+== Versionierung
+
+image::https://media.graphcms.com/resize=w:1280,f:crop/blur=amount:8/modulate=brightness:50/output=c:true,q:60,f:webp/compress/5HfjTLU7RLCiTPwtjc0w[background, size=cover]
+
+* Dateinamen
+  * `documentaton.docx`
+  * `documentaton-neu.docx`
+  * `documentaton-neu-20181107-2.docx`
+* Wiki-History
+* Git, Svn, ...
+
+== Lebenzyklus
+
+image::https://media.graphcms.com/resize=w:1280,f:crop/blur=amount:3/modulate=brightness:80/output=c:true,q:60,f:webp/compress/SDATyI7RmO0WYPHRAU46[background, size=cover]
+
+* Algemeine Konzepte, relativ stabil
+* Implementierungsdetails, ziemlich instabil
+* Code Beispiele, genauso stabil, wie der Source-Code
+
+[NOTE.speaker]
+--
+Die Dokumentation muss all diesen Lebenszyklen gerecht werden. Daher eignen sich Word Dokumente und Wiki-Seiten
+nicht, um volatile Konzepte zu beschreiben.
+--
+
+== Documentation as Code
+
+image::https://media.graphcms.com/resize=w:1280,f:crop/blur=amount:8/modulate=brightness:50/output=c:true,q:60,f:webp/compress/AvptkxDGSSSyYRIbYr7t[background, size=cover]
+
+Text rules!
+
+[none]
+* icon:thumbs-up[2x,role=green] Keine großen WYSIWYG Tools notwendig
+* icon:thumbs-up[2x,role=green] Git freundlich
+* icon:thumbs-up[2x,role=green] Merge freundlich
+
+=== Markdown
+
+[none]
+* icon:thumbs-up[2x,role=green]  sehr einfach
+* icon:thumbs-up[2x,role=green]  breite Tool Untersützung
+* icon:thumbs-down[2x,role=red]  kein Include
+* icon:thumbs-down[2x,role=red]  kein Standard, viele Varianten
+
+[source,markdown]
+----
+**This is bold text**
+
+__This is bold text__
+
+*This is italic text*
+
+_This is italic text_
+----
+
+=== Asciidoc
+
+Asciidoc == Markdown++
+
+[none]
+* icon:thumbs-up[2x,role=green] ziemlich einfach
+* icon:thumbs-up[2x,role=green] fast genauso breite Tool Untersützung
+* icon:thumbs-up[2x,role=green] Include icon:fa-smile-o[]
+
+[source,asciidoc]
+----
+*This is bold text*
+
+_This is italic text_
+----
+
+*This is bold text*
+
+_This is italic text_
+
+== Code As Documentation
+
+Wenn der Code schon "*selbst*-dokumentierend" ist, dann sollte er
+auch Bestandteil der Dokumentation sein.
+
+[source,java]
+.Sourcecode
+----
+import java.time.LocalDateTime;
+
+public class Main {
+  public static void main(String[] args) {
+    LocalDateTime a = LocalDateTime.now(); // <1>
+
+    System.out.println(a);
+  }
+}
+----
+
+<1> Aktuelle Uhrzeit ermitteln
+
+[%notitle]
+
+=== include
+
+[source,asciidoc]
+----
+ [source,groovy]
+ .build.gradle
+ ----
+ include::../../../build.gradle[lines=1..15]
+ ----
+----
+
+=== Ergebnis
+
+[source,groovy]
+.build.gradle
+----
+include::../../../build.gradle[lines=1..15]
+----
+
+=== include mit tags
+[source,asciidoc]
+----
+ [source,groovy]
+ .build.gradle
+ ----
+ include::../../../build.gradle[tags=dependencies]
+ ----
+----
+
+=== Ergebnis
+
+[source,groovy]
+.build.gradle
+----
+include::../../../build.gradle[tags=dependencies]
+----
+
+== Documentation as Code
+
+=== Dockerfile
+
+[source,groovy]
+.build.gradle
+----
+include::../../../Dockerfile[]
+----
+
+
+== ENDE
+Bei Fragen fragen ...
