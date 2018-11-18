@@ -17,35 +17,13 @@ variables:
   # When using dind, it's wise to use the overlayfs driver for
   # improved performance.
   DOCKER_DRIVER: overlay2
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
   GIT_SUBMODULE_STRATEGY: recursive
 
 services:
 - name: docker:dind
 
 stages:
-- build
 - deploy
-- rollout
-
-before_script:
-- echo $OC_DEPLOYER_TOKEN
-- export GRADLE_USER_HOME=`pwd`/.gradle
-
-build:
-  stage: build
-  script:
-  - ls -asl bin
-  - ./gradlew -PdocDir=reiseportal generateHTML
-  artifacts:
-    paths:
-    - reiseportal/build/html5
-    expire_in: 4h
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: push
-    paths:
-    - .gradle
 
 docker-deploy:
   stage: deploy

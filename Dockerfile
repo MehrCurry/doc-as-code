@@ -7,4 +7,4 @@ RUN ./gradlew asciidoctor
 
 FROM nginx
 
-COPY --from=builder /usr/share/jughh/build/asciidoc/revealjs /usr/share/nginx/html
+COPY --from=builder /usr/share/jughh/build/asciidoc/ /usr/share/nginx/html
