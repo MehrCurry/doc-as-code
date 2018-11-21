@@ -3,7 +3,7 @@ FROM adoptopenjdk/openjdk8 AS builder
 COPY . /usr/share/jughh
 WORKDIR /usr/share/jughh
 
-RUN ./gradlew asciidoctor
+RUN ./gradlew asciidoctor documentation
 
 FROM nginx
 
