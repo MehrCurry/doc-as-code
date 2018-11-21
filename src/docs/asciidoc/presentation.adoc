@@ -1,5 +1,10 @@
 = documentation as code / code as documentation
 :title-slide-background-image: https://media.graphcms.com/modulate=brightness:80/rqnG9sz6SjuQJMzfEg6J
+:lang: de
+ifeval::["{lang}" == "de"]
+:ldquo: &#8222;
+:rdquo: &#8220;
+endif::[]
 
 Guido Zockoll
 Java User Group, Hamburg 11/2018
@@ -81,6 +86,14 @@ Die Dokumentation muss all diesen Lebenszyklen gerecht werden. Daher eignen sich
 nicht, um volatile Konzepte zu beschreiben.
 --
 
+== Anforderungen an Dokumentation
+
+[none]
+* icon:wrench[role=blue] einfach zu schreiben
+* icon:wrench[role=blue]kein Medienbruch, möglichst in der IDE zu schreiben
+* icon:wrench[role=blue]Unterstützung eines Software-Versionierungstools
+* icon:wrench[role=blue]Unterstützung von konkurrierender, gleichzeitiger Bearbeitung
+
 == Documentation as Code
 
 image::https://media.graphcms.com/resize=w:1280,f:crop/blur=amount:4/modulate=brightness:70/output=c:true,q:60,f:webp/compress/AvptkxDGSSSyYRIbYr7t[background, size=cover]
@@ -113,7 +126,11 @@ _This is italic text_
 
 === Asciidoc
 
-Asciidoc == Markdown++
+[asciimath]
+++++
+Asciidoc = Markdown++
+++++
+
 
 [none]
 * icon:thumbs-up[2x,role=green] ziemlich einfach
@@ -133,7 +150,7 @@ _This is italic text_
 
 == Code As Documentation
 
-Wenn der Code schon "*selbst*-dokumentierend" ist, dann sollte er
+Wenn der Code schon "`*selbst-dokumentierend*`" ist, dann sollte er
 auch Bestandteil der Dokumentation sein.
 
 [source,java]
@@ -156,16 +173,18 @@ public class Main {
 
 [source,asciidoc]
 ----
- [source,groovy]
+ [source,gradle]
  .build.gradle
  ----
  include::../../../build.gradle[lines=1..15]
  ----
 ----
 
+IMPORTANT: Das `include` Macro ermöglicht den lauffähigen Quellcode in der Dokumentation zu verwenden.
+
 === Ergebnis
 
-[source,groovy]
+[source,gradle]
 .build.gradle
 ----
 include::../../../build.gradle[lines=1..15]
@@ -174,7 +193,7 @@ include::../../../build.gradle[lines=1..15]
 === include mit tags
 [source,asciidoc]
 ----
- [source,groovy]
+ [source,gradle]
  .build.gradle
  ----
  include::../../../build.gradle[tags=dependencies]
@@ -183,7 +202,7 @@ include::../../../build.gradle[lines=1..15]
 
 === Ergebnis
 
-[source,groovy]
+[source,gradle]
 .build.gradle
 ----
 include::../../../build.gradle[tags=dependencies]
@@ -255,7 +274,7 @@ include::../../../.travis.yml[]
 
 === Dockerfile
 
-[source,groovy]
+[source,dockerfile]
 .Dockerfile
 ----
 include::../../../Dockerfile[]
