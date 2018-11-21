@@ -101,13 +101,10 @@ asciidoctor {
     attributes \
         'build-gradle': file('build.gradle'),
             'sourcedir': project.sourceSets.main.java.srcDirs[0],
-            'endpoint-url': 'http://example.org',
             'source-highlighter': 'highlightjs',
             'mkdirs': true,
             'imagesdir': './images',
             'stylesdir': 'styles/',
-            'stylesheet': 'foobar',
-            'toc': 'left',
             'icons': 'font',
             'setanchors': '',
             'idprefix': 'slide-',
@@ -136,19 +133,13 @@ task documentation(type: org.asciidoctor.gradle.AsciidoctorTask) {
     attributes \
         'build-gradle': file('build.gradle'),
             'sourcedir': project.sourceSets.main.java.srcDirs[0],
-            'endpoint-url': 'http://example.org',
-            'source-highlighter': 'coderay',
+            'source-highlighter': 'highlightjs',
             'imagesdir': './images',
             'toc': 'left',
             'icons': 'font',
             'setanchors': '',
             'idprefix': 'slide-',
-            'idseparator': '-',
-            'docinfo': 'shared',
-            'bibliography-database': 'cnote.bib',
-            'bibliography-style': 'apa',
-            'bibliography-locale': 'de-DE',
-            'allow-uri-read': true
+            'idseparator': '-'
 }
 
 liveReload {

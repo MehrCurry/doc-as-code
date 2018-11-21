@@ -182,6 +182,12 @@ include::../../../build.gradle[lines=1..15]
 include::../../../build.gradle[tags=dependencies]
 ----
 
+=== Git Submodule
+
+Mittels `git submodule add` können auch Beispiele aus
+anderen Quellen "live" eingebunden werden.
+
+
 == Documentation as Code
 
 === Dockerfile

@@ -19,3 +19,7 @@ Starten mit:
 ```
 docker run -it --rm -p 3000:80 gzockoll/doc-as-code
 ```
+
+
+* Präsentation: http://localhost:3000/revealjs/presentation.html
+* Dokumentation: http://localhost:3000/html5/presentation.html
