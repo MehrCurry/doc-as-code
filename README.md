@@ -1,5 +1,7 @@
 # Documentation as Code, Vortrag JUGHH 11/2018
 
+[![Build Status](https://travis-ci.org/MehrCurry/doc-as-code.svg?branch=master)](https://travis-ci.org/MehrCurry/doc-as-code)
+
 ## Build
 
 ```

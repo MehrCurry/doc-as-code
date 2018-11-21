@@ -1,0 +1,3 @@
+[submodule "examples/rps"]
+	path = examples/rps
+	url = ../RockPaperScissors.git
