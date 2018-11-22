@@ -90,9 +90,9 @@ nicht, um volatile Konzepte zu beschreiben.
 
 [none]
 * icon:wrench[role=blue] einfach zu schreiben
-* icon:wrench[role=blue]kein Medienbruch, möglichst in der IDE zu schreiben
-* icon:wrench[role=blue]Unterstützung eines Software-Versionierungstools
-* icon:wrench[role=blue]Unterstützung von konkurrierender, gleichzeitiger Bearbeitung
+* icon:wrench[role=blue] kein Medienbruch, möglichst in der IDE zu schreiben
+* icon:wrench[role=blue] Unterstützung eines Software-Versionierungstools
+* icon:wrench[role=blue] Unterstützung von konkurrierender, gleichzeitiger Bearbeitung
 
 == Documentation as Code
 
@@ -191,7 +191,8 @@ include::../../../build.gradle[lines=1..15]
 ----
 
 === include mit tags
-[source,asciidoc]
+
+[source,asciidoc,highlight=4]
 ----
  [source,gradle]
  .build.gradle
@@ -218,7 +219,7 @@ anderen Quellen "live" eingebunden werden.
 
 [source,bash]
 ----
-git submodule add git@github.com:MehrCurry/...
+git submodule add git@github.com:.../...
 ----
 
 === Beispiel einbinden
@@ -292,12 +293,16 @@ docker run -it --rm -p 3000:80 gzockoll/doc-as-code
 * http://localhost:3000/revealjs/presentation.html[Präsentation]
 * http://localhost:3000/html5/presentation.html[Dokumentation]
 
+== Und sonst noch
+
+image::https://media.graphcms.com/resize=w:1280,f:crop,a:right/blur=amount:2/modulate=brightness:70/output=c:true,q:60,f:webp/compress/xm6tiVY8ScIepbrjbxFw[background, size=cover]
+
+* Arc42 Template: https://arc42.org/download
+* PanDoc: https://pandoc.org/
+* DocToolChain: https://doctoolchain.github.io/docToolchain/#_overview_of_available_tasks
+
 == ENDE
 
 image::https://media.graphcms.com/resize=w:1280,f:crop/blur=amount:4/modulate=brightness:70/output=c:true,q:60,f:webp/compress/5Nps5vRET0u0fT2gbpfx[background, size=cover]
 
 Bei Fragen, fragen!
-
-****
-Alle Bilder unter CC0 Lizenz von Pixbay (www.pixbay.com)
-****

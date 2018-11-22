@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        mavenCentral()
         jcenter()
         maven { url "http://rubygems-proxy.torquebox.org/releases" }
     }
