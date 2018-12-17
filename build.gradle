@@ -3,7 +3,7 @@ buildscript {
         jcenter()
         maven { url "http://rubygems-proxy.torquebox.org/releases" }
     }
-
+// test
     dependencies {
         classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
         classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0'
@@ -95,7 +95,7 @@ asciidoctor {
     }
     gemPath = jrubyPrepare.outputDir
     requires = ['asciidoctor-revealjs', 'asciidoctor-diagram', 'asciimath']
-    backends 'revealjs', 'html5'
+    backends 'revealjs'
     attributes \
         'build-gradle': file('build.gradle'),
             'sourcedir': project.sourceSets.main.java.srcDirs[0],
